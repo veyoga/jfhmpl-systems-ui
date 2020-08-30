@@ -1,0 +1,7 @@
+{
+  "name": "JFHMPL",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
