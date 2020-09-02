@@ -1,4 +1,4 @@
 export interface UserDetails{
-    tokenId:string;
-    customerName:string;
+    tokenId: string;
+    customerName: string;
 }

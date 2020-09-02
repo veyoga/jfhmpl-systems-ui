@@ -17,10 +17,10 @@ import { ToastService } from '../services/toast.service';
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
   constructor(private _formBuilder: FormBuilder,
-    private _httpService: HttpServiceService,
-    private _sessionService: SessionService,
-    private _router: Router,
-  private _toastService:ToastService) { }
+              private _httpService: HttpServiceService,
+              private _sessionService: SessionService,
+              private _router: Router,
+              private _toastService: ToastService) { }
 
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
@@ -36,13 +36,13 @@ export class LoginPage implements OnInit {
           const tokenId = _.get(res, 'token');
           const customer_name = _.get(res, 'customer_name');
           const userDetails: UserDetails = {
-            tokenId: tokenId,
+            tokenId,
             customerName: customer_name
-          }
+          };
           this._sessionService.setItem(SESSION_STORAGE.currentUser, userDetails);
           this._router.navigate(['/purchase-history']);
         } else {
-          const msg=_.get(res,'msg');
+          const msg = _.get(res, 'msg');
           this._toastService.present(msg);
         }
       });

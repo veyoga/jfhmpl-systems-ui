@@ -27,13 +27,13 @@ export class HttpServiceService {
     if (!authorization) {
       authHttpHeader = {
         'Content-Type': 'application/json'
-      }
+      };
     } else {
       const tokenId = this.userDetails.tokenId;
       authHttpHeader = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + tokenId
-      }
+        Authorization: 'Bearer ' + tokenId
+      };
     }
     const httpOptions = {
       headers: new HttpHeaders(authHttpHeader)
