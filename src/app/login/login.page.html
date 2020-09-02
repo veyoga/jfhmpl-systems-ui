@@ -11,24 +11,26 @@
     </ion-card-header>    
     
     <h2>Login</h2>
+    <form [formGroup]="loginForm"  novalidate>
     <ion-card-content>
         <ion-item>
             <ion-label position="floating">User ID</ion-label>
-            <ion-input></ion-input>
+            <ion-input type="text" formControlName="customer_id"></ion-input>
           </ion-item>
       
           <ion-item>
               <ion-label position="floating">PIN Number</ion-label>
-              <ion-input type="password"></ion-input>
+              <ion-input type="password" formControlName="pin"></ion-input>
           </ion-item>
           <ion-row>
               <ion-col>
-                <ion-button type="submit" color="primary" expand="block" (click)="login()">Login</ion-button>
+                <ion-button type="button" color="primary" expand="block" (click)="login()">Login</ion-button>
                 <a [routerLink]="['/forgot-password']" class="small-text">Forgot PIN?</a>
               </ion-col>
           </ion-row>
           
     </ion-card-content>
+    </form>
   </ion-card>
 </ion-grid>
 
