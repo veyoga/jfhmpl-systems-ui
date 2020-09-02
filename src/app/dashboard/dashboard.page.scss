@@ -47,10 +47,11 @@
   
   #header > h2{
     font-family: 'Roboto', sans-serif;
-    color: #e0375a;
+    color: #000;
     font-size: 1.8em;
     font-weight: bold;
-    padding: 20px 20px 20px 5px;
+    padding: 30px 20px 20px 5px;
+    text-align: center;
   }
   
   
@@ -64,3 +65,5 @@
     height: 110px;
     justify-content: center; 
   }
+
+  

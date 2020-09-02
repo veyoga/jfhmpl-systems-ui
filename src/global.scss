@@ -26,5 +26,59 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .toolbar-header{
-    --background: linear-gradient(80deg, #CB9A3C,#ECB036);
+    --background: linear-gradient(80deg, #FDC325,#ECB036);
+    text-align: center;
+    color: #000;
+}
+
+.dash-table {
+    background-color: red;
+    margin: 20px;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  .dash-col {
+    border:solid 2px #cc990c;
+  }
+  .dash-cola{
+    border:solid 2px #cc990c;
+
+  }
+  .dash-colb {
+    border:solid 2px #cc990c;
+    border-top: 0px;
+  
+  }
+  .dash-colc {
+    border:solid 2px #cc990c;
+    border-top: 0px;
+  }
+
+  .dash-col-top {
+    border-top:solid 2px #cc990c;
+  }
+
+  .dash-col2{
+  padding-inline-start: var(--ion-grid-column-padding-xs, var(--ion-grid-column-padding, 0px));
+    padding-inline-end: var(--ion-grid-column-padding-xs, var(--ion-grid-column-padding, 0px));
+    padding-top:0px;
+    padding-bottom: 0px;
+  }
+  .dash-col-three{
+    background-color:  #cc990c;
+  padding-inline-start: var(--ion-grid-column-padding-xs, var(--ion-grid-column-padding, 0px));
+    padding-inline-end: var(--ion-grid-column-padding-xs, var(--ion-grid-column-padding, 0px));
+  }
+  .first-table {
+    margin: 20px;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    line-height: 24px;
+  }
+
+  .purchase-list .item-native {
+    padding-inline-end: unset !important;
+    padding-inline-start: unset !important;
 }
