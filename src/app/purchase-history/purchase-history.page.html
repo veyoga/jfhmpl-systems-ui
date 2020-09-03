@@ -7,36 +7,53 @@
 <ion-content>
 
 
-<!-- List of Sliding Items -->
-<ion-list>
-  <ion-item class="purchase-list" *ngFor="let history of purchaseHistory">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                  {{history.purchase_date|purchaseDate:'date'}}
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  {{history.purchase_date|purchaseDate:'month-year'}}
-                </td>
-                <td class="tab-amount-number">
-                 {{history.amount}}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-  </ion-row>
-  </ion-item>
-</ion-list>
+  <!-- List of Sliding Items -->
+  <ion-list>
+    <ion-item class="purchase-list" *ngFor="let history of purchaseHistory" button (click)="onHistoryClick(history)">
+      <ion-row style="width:100%">
+        <table class="rwd-table" size="12">
+          <tbody style="width:100%">
+            <tr style="width:100%">
+              <td class="tab-date">
+                {{history.purchase_date|purchaseDate:'date'}}
+              </td>
+              <td rowspan="2" class="tab-icon">
+                <div class="l-fish1">&nbsp;</div>
+                <div class="l-fish2">&nbsp;</div>
+                <div class="l-fish3">&nbsp;</div>
+              </td>
+              <td class="tab-amount">
+                Rs.
+              </td>
+            </tr>
+            <tr>
+              <td class="tab-month">
+                {{history.purchase_date|purchaseDate:'month-year'}}
+              </td>
+              <td class="tab-amount-number">
+                {{history.amount}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="rwd-table purchase-details" size="12" *ngIf="history.purchase_date===selectedItem.purchase_date && selectedItem.expanded">
+          <ng-container *ngFor="let orderItem of historyDetails">
+          <tr>
+            <td rowspan="2">{{orderItem.cat_name}}</td>
+            <td class="center-text">WT</td>
+            <td class="center-text">Rate</td>
+            <td class="center-text">WT RS</td>
+            <td class="center-text">PLC RS</td>
+          </tr>
+          <tr>
+            <td class="orange-bg center-text">{{orderItem.weight}}</td>
+            <td class="orange-bg center-text">{{orderItem.rate}}</td>
+            <td class="orange-bg center-text">{{orderItem.weight_amount}}</td>
+            <td class="orange-bg center-text">{{orderItem.plc_amount}}</td>
+          </tr>
+        </ng-container>
+        </table>
+      </ion-row>
+    </ion-item>
+  </ion-list>
 </ion-content>
