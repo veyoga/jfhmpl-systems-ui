@@ -20,10 +20,14 @@ const routes: Routes = [
     loadChildren: () => import('./purchase-history/purchase-history.module').then(m => m.PurchaseHistoryPageModule)
   },
   {
+    path: 'logout',
+    loadChildren: () => import('./logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

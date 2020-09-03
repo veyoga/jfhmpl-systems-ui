@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { ToastService } from '../services/toast.service';
 import { PurchaseHistory } from '../services/purchase-history.interface';
 import * as moment from 'moment';
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-purchase-history',
   templateUrl: './purchase-history.page.html',
@@ -17,7 +18,7 @@ export class PurchaseHistoryPage implements OnInit, OnDestroy {
   historyDetails:any;
   selectedItem = {};
   constructor(private _httpService: HttpServiceService,
-    private _toastService: ToastService) { }
+    private _toastService: ToastService,private _menuController:MenuController) { }
 
   ngOnInit() {
     this.historyService = this._httpService.getPurchaseHistory().subscribe((res) => {
@@ -56,6 +57,9 @@ export class PurchaseHistoryPage implements OnInit, OnDestroy {
         this._toastService.present(msg);
       }
     });
+  }
+  openSideMenu(){
+    this._menuController.open();
   }
   ngOnDestroy() {
     this.historyService.unsubscribe();

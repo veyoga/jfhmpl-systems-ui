@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpServiceService } from '../services/http-service.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, MenuController } from '@ionic/angular';
 import * as _ from 'lodash';
 import { SessionService } from '../services/session.service';
 import { SESSION_STORAGE } from '../constants/session.constants';
@@ -24,13 +24,15 @@ export class LoginPage implements OnInit, OnDestroy {
     private _sessionService: SessionService,
     private _router: Router,
     private _toastService: ToastService,
-  private _loaderService:LoaderService) { }
+    private _loaderService: LoaderService,
+    private _menuController: MenuController) { }
 
   ngOnInit() {
     this.loginForm = this._formBuilder.group({
       customer_id: ['', [Validators.required]],
       pin: ['', Validators.required]
     });
+    this._menuController.close();
   }
   public login(): void {
     if (this.loginForm.status === 'VALID') {
@@ -46,6 +48,7 @@ export class LoginPage implements OnInit, OnDestroy {
             customerId: customer_id
           };
           this._sessionService.setItem(SESSION_STORAGE.currentUser, userDetails);
+          this._httpService.setUserProfile(true);
           this._router.navigate(['/purchase-history']);
         } else {
           const msg = _.get(res, 'msg');

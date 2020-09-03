@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { HttpServiceService } from './services/http-service.service';
+import { SessionService } from './services/session.service';
+import { UserDetails } from './services/user-details.interface';
+import { SESSION_STORAGE } from './constants/session.constants';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = [
+  /*public appPages = [
     {
       title: 'Inbox',
       url: '/folder/Inbox',
@@ -42,13 +46,23 @@ export class AppComponent implements OnInit {
       url: '/folder/Spam',
       icon: 'warning'
     }
+  ];*/
+  public appPages = [
+    {
+      title: 'Logout',
+      url: '/logout',
+      icon: 'log-out'
+    }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-
+  //public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = [];
+  public userDetails: UserDetails;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private _httpServiceService: HttpServiceService,
+    private _sessionService: SessionService
   ) {
     this.initializeApp();
   }
@@ -61,9 +75,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userDetails = this._sessionService.getItem(SESSION_STORAGE.currentUser);
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+    this._httpServiceService.getUserProfile().subscribe((res) => {
+      if (res) {
+        this.userDetails = this._sessionService.getItem(SESSION_STORAGE.currentUser);
+      } else {
+
+      }
+    });
   }
 }

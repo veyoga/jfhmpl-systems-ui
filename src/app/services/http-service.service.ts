@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from './session.service';
 import { SESSION_STORAGE } from '../constants/session.constants';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { UserDetails } from './user-details.interface';
 
@@ -14,6 +14,7 @@ import { UserDetails } from './user-details.interface';
 export class HttpServiceService {
 
   private apiBaseUrl = environment.apiBaseUrl;
+  private userProfile = new BehaviorSubject(false);
   constructor(private _http: HttpClient, private _sessionService: SessionService) { }
   public login(payLodData: any): Observable<any> {
     const url = this.apiBaseUrl + '/user/login';
@@ -26,6 +27,13 @@ export class HttpServiceService {
       url = url + '/' + byDate;
     }
     return this._http.post<any>(url, {}, this.requestheader());
+  }
+
+  public setUserProfile(flag: boolean): void {
+    this.userProfile.next(flag);
+  }
+  public getUserProfile(): Observable<boolean> {
+    return this.userProfile;
   }
   private requestheader(authorization: boolean = true) {
     let authHttpHeader;
