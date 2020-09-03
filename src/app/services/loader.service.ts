@@ -2,25 +2,31 @@ import { Injectable } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LoaderService {
 
-  private loader: HTMLIonLoadingElement;
+    private loader: HTMLIonLoadingElement;
+    isLoading: boolean;
+    constructor(private loadingController: LoadingController) { }
 
-    constructor(private loadingController: LoadingController) {}
-
-    async showLoader() {
-        if (!this.loader) {
-            this.loader = await this.loadingController.create({ message: 'Loading' });
-        }
-        await this.loader.present();
+    async loadingPresent() {
+        this.isLoading = true;
+        return await this.loadingController.create({
+            message: 'Please wait ...',
+            spinner: 'circles'
+        }).then(a => {
+            a.present().then(() => {
+                if (!this.isLoading) {
+                    a.dismiss().then();
+                }
+            });
+        });
     }
 
-    async hideLoader() {
-        if (this.loader) {
-            await this.loader.dismiss();
-            this.loader = null;
-        }
+    async loadingDismiss() {
+        this.isLoading = false;
+        return await this.loadingController.dismiss().then();
     }
+
 }

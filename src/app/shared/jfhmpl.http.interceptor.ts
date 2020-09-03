@@ -13,7 +13,7 @@ export class JfhmplHttpInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        this._loaderService.showLoader();
+        this._loaderService.loadingPresent();
 
         this.count++;
 
@@ -23,7 +23,7 @@ export class JfhmplHttpInterceptor implements HttpInterceptor {
 
                 this.count--;
 
-                if (this.count == 0) { this._loaderService.hideLoader(); }
+                if (this.count == 0) { this._loaderService.loadingDismiss(); }
             })
             );
     }

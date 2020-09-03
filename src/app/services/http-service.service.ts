@@ -22,6 +22,13 @@ export class HttpServiceService {
     const url = this.apiBaseUrl + '/user/login';
     return this._http.post<any>(url, { ...payLodData }, this.requestheader(false));
   }
+  public getPurchaseHistory(byDate?: string): Observable<any> {
+    let url = this.apiBaseUrl + '/purchase-history/' + this.userDetails.customerId;
+    if (byDate) {
+      url = url + '/' + byDate;
+    }
+    return this._http.post<any>(url, {}, this.requestheader());
+  }
   private requestheader(authorization: boolean = true) {
     let authHttpHeader;
     if (!authorization) {

@@ -9,13 +9,13 @@
 
 <!-- List of Sliding Items -->
 <ion-list>
-  <ion-item class="purchase-list">
+  <ion-item class="purchase-list" *ngFor="let history of purchaseHistory">
     <ion-row style="width:100%">
           <table class="rwd-table" size="12">
             <tbody style="width:100%">
               <tr style="width:100%">
                 <td class="tab-date">
-                 28
+                  {{history.purchase_date|purchaseDate:'date'}}
                 </td>
                 <td rowspan="2" class="tab-icon">
                  <div class="l-fish1">&nbsp;</div>
@@ -28,192 +28,15 @@
               </tr>
               <tr>
                 <td class="tab-month">
-                  Mar-20
+                  {{history.purchase_date|purchaseDate:'month-year'}}
                 </td>
                 <td class="tab-amount-number">
-                 88500.00
+                 {{history.amount}}
                 </td>
               </tr>
             </tbody>
           </table>
-
   </ion-row>
   </ion-item>
 </ion-list>
-
-
-
-<ion-list>
-  <ion-item class="purchase-list">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                 28
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  Mar-20
-                </td>
-                <td class="tab-amount-number">
-                 88500.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-  </ion-row>
-  </ion-item>
-</ion-list>
-
-
-
-
-<ion-list>
-  <ion-item class="purchase-list">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                 28
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  Mar-20
-                </td>
-                <td class="tab-amount-number">
-                 88500.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-  </ion-row>
-  </ion-item>
-</ion-list>
-
-
-<ion-list>
-  <ion-item class="purchase-list">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                 28
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  Mar-20
-                </td>
-                <td class="tab-amount-number">
-                 88500.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-  </ion-row>
-  </ion-item>
-</ion-list>
-
-
-<ion-list>
-  <ion-item class="purchase-list">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                 28
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  Mar-20
-                </td>
-                <td class="tab-amount-number">
-                 88500.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-  </ion-row>
-  </ion-item>
-</ion-list>
-
-<ion-list>
-  <ion-item class="purchase-list">
-    <ion-row style="width:100%">
-          <table class="rwd-table" size="12">
-            <tbody style="width:100%">
-              <tr style="width:100%">
-                <td class="tab-date">
-                 28
-                </td>
-                <td rowspan="2" class="tab-icon">
-                 <div class="l-fish1">&nbsp;</div>
-                 <div class="l-fish2">&nbsp;</div>
-                 <div class="l-fish3">&nbsp;</div>
-                </td>
-                <td class="tab-amount">
-                  Rs.
-                </td>
-              </tr>
-              <tr>
-                <td class="tab-month">
-                  Mar-20
-                </td>
-                <td class="tab-amount-number">
-                 88500.00
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-  </ion-row>
-  </ion-item>
-</ion-list>
-
-
-
-
 </ion-content>
