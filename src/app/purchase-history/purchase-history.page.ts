@@ -6,6 +6,7 @@ import { ToastService } from '../services/toast.service';
 import { PurchaseHistory } from '../services/purchase-history.interface';
 import * as moment from 'moment';
 import { MenuController } from '@ionic/angular';
+import { HistoryDetails } from '../services/history-details.interface';
 @Component({
   selector: 'app-purchase-history',
   templateUrl: './purchase-history.page.html',
@@ -15,10 +16,10 @@ export class PurchaseHistoryPage implements OnInit, OnDestroy {
   historyService: Subscription;
   historyServiceByDateSub: Subscription;
   purchaseHistory: PurchaseHistory[] = [];
-  historyDetails:any;
+  historyDetails: HistoryDetails;
   selectedItem = {};
   constructor(private _httpService: HttpServiceService,
-    private _toastService: ToastService,private _menuController:MenuController) { }
+    private _toastService: ToastService, private _menuController: MenuController) { }
 
   ngOnInit() {
     this.historyService = this._httpService.getPurchaseHistory().subscribe((res) => {
@@ -32,22 +33,29 @@ export class PurchaseHistoryPage implements OnInit, OnDestroy {
     });
   }
   onHistoryClick(history: PurchaseHistory) {
-    const purchase_date = _.get(this.selectedItem, 'purchase_date', history.purchase_date);
-    const expanded = _.get(this.selectedItem, 'expanded');
+    const purchase_date = _.get(this.selectedItem, 'purchase_date');
     if (purchase_date === history.purchase_date) {
+      const expanded = _.get(this.selectedItem, 'expanded');
       this.selectedItem = {
         purchase_date: purchase_date,
         expanded: !expanded
       }
-      if (!expanded) {
-        const orderDate=moment(history.purchase_date).format('YYYY-MM-DD');
+      const expandedFlag = _.get(this.selectedItem, 'expanded');
+      if (expandedFlag) {
+        const orderDate = moment(history.purchase_date).format('YYYY-MM-DD');
         this.historyServiceByDate(orderDate);
-        console.log('make service call');
       }
+    } else {
+      this.selectedItem = {
+        purchase_date: history.purchase_date,
+        expanded: true
+      }
+      const orderDate = moment(history.purchase_date).format('YYYY-MM-DD');
+      this.historyServiceByDate(orderDate);
     }
   }
-  historyServiceByDate(orderDate:string) {
-    this.historyDetails=null;
+  historyServiceByDate(orderDate: string) {
+    this.historyDetails = null;
     this.historyServiceByDateSub = this._httpService.getPurchaseHistory(orderDate).subscribe((res) => {
       const statusCode = _.get(res, 'statusCode');
       if (statusCode === '0000') {
@@ -58,7 +66,7 @@ export class PurchaseHistoryPage implements OnInit, OnDestroy {
       }
     });
   }
-  openSideMenu(){
+  openSideMenu() {
     this._menuController.open();
   }
   ngOnDestroy() {

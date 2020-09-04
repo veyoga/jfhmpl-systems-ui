@@ -1,6 +1,6 @@
 export interface HistoryDetails{
     cat_id:number;
-    cat_ame:string;
+    cat_name:string;
     weight:number;
     rate:number;
     weight_amount:number
