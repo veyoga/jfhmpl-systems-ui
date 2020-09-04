@@ -49,7 +49,7 @@ export class LoginPage implements OnInit, OnDestroy {
           };
           this._sessionService.setItem(SESSION_STORAGE.currentUser, userDetails);
           this._httpService.setUserProfile(true);
-          this._router.navigate(['/purchase-history']);
+          this._router.navigate(['/dashboard']);
         } else {
           const msg = _.get(res, 'msg');
           this._toastService.present(msg);

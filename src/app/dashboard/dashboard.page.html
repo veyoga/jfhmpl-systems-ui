@@ -1,8 +1,19 @@
-<ion-header >
+<ion-header [translucent]="true">
   <ion-toolbar class="toolbar-header">
-    <ion-title>JFHMPL System</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense" class="toolbar-header">
+      <ion-toolbar>
+        <ion-title size="large">Dashboard</ion-title>
+      </ion-toolbar>
+    </ion-header>
+<ion-content>
 
 <ion-content>
 
@@ -33,9 +44,7 @@
 </ion-grid>
 
 
-
-
-
+<a [routerLink]="['/purchase-history']">
   <div id="mainContainer">
     <div class="aside">
        <div class="buttonview">
@@ -47,8 +56,8 @@
         </div>
     </div>
   </div>
-
-  
+</a>
+<a [routerLink]="['/payment-history']">
   <div id="mainContainer">
     <div class="aside">
        <div class="buttonview">
@@ -60,6 +69,7 @@
         </div>
     </div>
   </div>
+  </a>
 
 
 </ion-content>

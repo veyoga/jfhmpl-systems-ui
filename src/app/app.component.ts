@@ -49,6 +49,11 @@ export class AppComponent implements OnInit {
   ];*/
   public appPages = [
     {
+      title: 'Purchase History',
+      url: '/purchase-history',
+      icon: 'archive'
+    },
+    {
       title: 'Logout',
       url: '/logout',
       icon: 'log-out'
