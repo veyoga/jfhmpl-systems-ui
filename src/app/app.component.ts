@@ -54,6 +54,11 @@ export class AppComponent implements OnInit {
       icon: 'archive'
     },
     {
+      title: 'Payment History',
+      url: '/payment-history',
+      icon: 'archive'
+    },
+    {
       title: 'Logout',
       url: '/logout',
       icon: 'log-out'
